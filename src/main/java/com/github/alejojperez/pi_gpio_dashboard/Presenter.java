@@ -1,6 +1,7 @@
 package com.github.alejojperez.pi_gpio_dashboard;
 
-import com.alejojperez.pi_gpio.core.implementations.GPIOController;
+import com.github.alejojperez.pi_gpio_dashboard.view_models.DashboardViewModel;
+import com.github.alejojperez.pi_gpio_dashboard.views.DashboardView;
 import de.saxsys.mvvmfx.FluentViewLoader;
 import de.saxsys.mvvmfx.ViewTuple;
 import javafx.geometry.Rectangle2D;
@@ -23,12 +24,10 @@ public class Presenter
         stage.setMinHeight(600);
 
         stage.setTitle("GPIO Pins: Dashboard");
-        //ViewTuple<DashboardView, DashboardViewModel> viewTuple = FluentViewLoader.fxmlView(DashboardView.class).load();
+        ViewTuple viewTuple = FluentViewLoader.fxmlView(DashboardView.class).load();
 
-        //Parent root = viewTuple.getView();
-        //stage.setScene(new Scene(root));
-
-        //tage.setOnCloseRequest(event -> GPIOController.getInstance().finalize());
+        Parent root = viewTuple.getView();
+        stage.setScene(new Scene(root));
 
         stage.show();
     }

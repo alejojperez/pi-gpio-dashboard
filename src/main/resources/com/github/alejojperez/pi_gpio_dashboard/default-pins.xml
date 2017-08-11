@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+
+<models>
+    <model description="2 and 3">
+        <pins>
+            <pin number="1" alias="3.3V PWR" editable="false" five-volts="false" three-volts="true" ground="false" />
+            <pin number="2" alias="5V PWR" editable="false" five-volts="true" three-volts="false" ground="false" />
+            <pin number="3" alias="GPIO 2" editable="true" five-volts="false" three-volts="false" ground="false" />
+            <pin number="4" alias="5V PWR" editable="false" five-volts="true" three-volts="false" ground="false" />
+            <pin number="5" alias="GPIO 3" editable="true" five-volts="false" three-volts="false" ground="false" />
+            <pin number="6" alias="GND" editable="false" five-volts="false" three-volts="false" ground="true" />
+            <pin number="7" alias="GPIO 4" editable="true" five-volts="false" three-volts="false" ground="false" />
+            <pin number="8" alias="UART0 TX" editable="false" five-volts="false" three-volts="false" ground="false" />
+            <pin number="9" alias="GND" editable="false" five-volts="false" three-volts="false" ground="true" />
+            <pin number="10" alias="UART0 RX" editable="false" five-volts="false" three-volts="false" ground="false" />
+            <pin number="11" alias="GPIO 17" editable="true" five-volts="false" three-volts="false" ground="false" />
+            <pin number="12" alias="GPIO 18" editable="true" five-volts="false" three-volts="false" ground="false" />
+            <pin number="13" alias="GPIO 27" editable="true" five-volts="false" three-volts="false" ground="false" />
+            <pin number="14" alias="GND" editable="false" five-volts="false" three-volts="false" ground="true" />
+            <pin number="15" alias="GPIO 22" editable="true" five-volts="false" three-volts="false" ground="false" />
+            <pin number="16" alias="GPIO 23" editable="true" five-volts="false" three-volts="false" ground="false" />
+            <pin number="17" alias="3.3V PWR" editable="true" five-volts="false" three-volts="true" ground="false" />
+            <pin number="18" alias="GPIO 24" editable="true" five-volts="false" three-volts="false" ground="false" />
+            <pin number="19" alias="GPIO 10" editable="true" five-volts="false" three-volts="false" ground="false" />
+            <pin number="20" alias="GND" editable="false" five-volts="false" three-volts="false" ground="true" />
+            <pin number="21" alias="GPIO 9" editable="true" five-volts="false" three-volts="false" ground="false" />
+            <pin number="22" alias="GPIO 25" editable="true" five-volts="false" three-volts="false" ground="false" />
+            <pin number="23" alias="GPIO 11" editable="true" five-volts="false" three-volts="false" ground="false" />
+            <pin number="24" alias="GPIO 8" editable="true" five-volts="false" three-volts="false" ground="false" />
+            <pin number="25" alias="GND" editable="false" five-volts="false" three-volts="false" ground="true" />
+            <pin number="26" alias="GPIO 7" editable="true" five-volts="false" three-volts="false" ground="false" />
+            <pin number="27" alias="Reserved" editable="false" five-volts="false" three-volts="false" ground="false" />
+            <pin number="28" alias="Reserved" editable="false" five-volts="false" three-volts="false" ground="false" />
+            <pin number="29" alias="GPIO 5" editable="true" five-volts="false" three-volts="false" ground="false" />
+            <pin number="30" alias="GND" editable="false" five-volts="false" three-volts="false" ground="true" />
+            <pin number="31" alias="GPIO 6" editable="true" five-volts="false" three-volts="false" ground="false" />
+            <pin number="32" alias="GPIO 12" editable="true" five-volts="false" three-volts="false" ground="false" />
+            <pin number="33" alias="GPIO 13" editable="true" five-volts="false" three-volts="false" ground="false" />
+            <pin number="34" alias="GND" editable="false" five-volts="false" three-volts="false" ground="true" />
+            <pin number="35" alias="GPIO 19" editable="true" five-volts="false" three-volts="false" ground="false" />
+            <pin number="36" alias="GPIO 16" editable="true" five-volts="false" three-volts="false" ground="false" />
+            <pin number="37" alias="GPIO 26" editable="true" five-volts="false" three-volts="false" ground="false" />
+            <pin number="38" alias="GPIO 20" editable="true" five-volts="false" three-volts="false" ground="false" />
+            <pin number="39" alias="GND" editable="false" five-volts="false" three-volts="false" ground="true" />
+            <pin number="40" alias="GPIO 21" editable="true" five-volts="false" three-volts="false" ground="false" />
+        </pins>
+    </model>
+</models>
