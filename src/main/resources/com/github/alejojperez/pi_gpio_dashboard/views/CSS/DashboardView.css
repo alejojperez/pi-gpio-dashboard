@@ -1,3 +1,13 @@
+.table-row-cell:selected {
+    -fx-background-color: rgba(70, 130, 180, 0.24);
+}
+.table-row-cell:selected {
+    /*-fx-border-color: rgba(180, 36, 41, 0.53);*/
+    -fx-table-cell-border-color: rgba(70, 130, 180, 0.39);
+}
+.table-row-cell:selected .text {
+    -fx-fill: black;
+}
 .table-view:focused {
     -fx-focus-color: transparent;
 }

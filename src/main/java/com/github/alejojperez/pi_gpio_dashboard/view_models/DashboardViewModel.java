@@ -8,6 +8,7 @@ import com.alejojperez.pi_gpio.core.implementations.FileLogger;
 import com.alejojperez.pi_gpio.core.implementations.FolderWatcher;
 import com.alejojperez.pi_gpio.core.implementations.GPIOController;
 import com.alejojperez.pi_gpio.core.implementations.Pin;
+import com.github.alejojperez.pi_gpio_dashboard.message_center.Manager;
 import de.saxsys.mvvmfx.ViewModel;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -28,6 +29,11 @@ public class DashboardViewModel implements ViewModel
      * The default pins file path
      */
     private String defaultPinsFileLocation = "./target/classes/com/github/alejojperez/pi_gpio_dashboard/default-pins.xml";
+
+    /**
+     * The Raspberry PI model
+     */
+    private String model;
 
     /**
      * Constructor
@@ -51,6 +57,16 @@ public class DashboardViewModel implements ViewModel
     }
 
     /**
+     * The Raspberry Pi model
+     *
+     * @return
+     */
+    public String getModel()
+    {
+        return model;
+    }
+
+    /**
      * Setup the GPIO controller
      */
     private void initializeGPIOController()
@@ -68,11 +84,19 @@ public class DashboardViewModel implements ViewModel
 
     /**
      * Load all the pins into the GPIO controller
-     *
-     * @param model the GPIO version model
      */
-    public void loadPinsIntoController(String model) throws Exception
+    public void loadPinsIntoController() throws Exception
     {
+        if(this.model == null)
+        {
+            try {
+                Manager.error("Raspberry Pi Model", "The pins could not been loaded because you have not selected the Raspberry Pi model.");
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setNamespaceAware(true); // never forget this!
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -86,19 +110,19 @@ public class DashboardViewModel implements ViewModel
         {
             Element tmp = (Element) nList.item(i);
 
-            if (tmp.hasAttribute("description") && tmp.getAttribute("description").equals(model)) {
+            if (tmp.hasAttribute("description") && tmp.getAttribute("description").equals(this.model)) {
                 xmlModel = tmp;
                 break;
             }
         }
 
         if (xmlModel == null)
-            throw new IllegalArgumentException("The model [" + model + "] is not a defined model in the default pins file. Consider updating or changing the default pins file.");
+            throw new IllegalArgumentException("The model [" + this.model + "] is not a defined model in the default pins file. Consider updating or changing the default pins file.");
 
         NodeList pinsList = xmlModel.getElementsByTagName("pin");
 
         if(pinsList.getLength() == 0)
-            throw new Exception("The model ["+model+"] does not have any pin defined.");
+            throw new Exception("The model ["+this.model+"] does not have any pin defined.");
 
         for (int i = 0; i < pinsList.getLength(); i++)
         {
@@ -114,5 +138,17 @@ public class DashboardViewModel implements ViewModel
 
             this.getGPIOController().addPin(pin);
         }
+    }
+
+    /**
+     * Set the Raspberry Pi model
+     *
+     * @param model the Raspberry Pi model
+     */
+    public DashboardViewModel setModel(String model)
+    {
+        this.model = model;
+
+        return this;
     }
 }
