@@ -2,7 +2,7 @@ package com.github.alejojperez.pi_gpio_dashboard.views;
 
 import com.alejojperez.pi_gpio.core.contracts.IPin;
 import com.alejojperez.pi_gpio.core.implementations.Pin;
-import com.github.alejojperez.pi_gpio_dashboard.Application;
+import com.github.alejojperez.pi_gpio_dashboard.commands.CommandCenter;
 import com.github.alejojperez.pi_gpio_dashboard.message_center.Manager;
 import com.github.alejojperez.pi_gpio_dashboard.view_models.DashboardViewModel;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
@@ -15,17 +15,9 @@ import javafx.collections.MapChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.input.MouseButton;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.util.Callback;
-
 import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -47,17 +39,53 @@ public class DashboardView implements FxmlView<DashboardViewModel>, Initializabl
     private TableColumn<Map.Entry<Integer, IPin>, String> tcDirection;
     @FXML
     private TableColumn<Map.Entry<Integer, IPin>, String> tcOnOff;
+    @FXML
+    private Button btnInitialize;
+    @FXML
+    private Button btnDirection;
+    @FXML
+    private Button btnOnOff;
 
     public void initialize(URL location, ResourceBundle resources)
     {
+        // View model
         this.initializeViewModel();
         this.bindToViewModel();
+
+        // View
         this.initializeTableView();
+        this.initializeButtons();
     }
 
     private void bindToViewModel()
     {
         this.viewModel.getGPIOController().getPins().addListener((MapChangeListener<Integer, IPin>) change -> refreshPins());
+    }
+
+    private void initializeButtons()
+    {
+        this.btnInitialize.disableProperty().bind(this.tvPins.getSelectionModel().selectedItemProperty().isNull());
+
+        this.tvPins.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue == null)
+            {
+                this.btnDirection.setDisable(true);
+                this.btnOnOff.setDisable(true);
+                return;
+            }
+
+            IPin pin = ((Map.Entry<Integer, IPin>) newValue).getValue();
+
+            if(!pin.isInitialized())
+            {
+                this.btnDirection.setDisable(true);
+                this.btnOnOff.setDisable(true);
+                return;
+            }
+
+            this.btnDirection.setDisable(false);
+            this.btnOnOff.setDisable(false);
+        });
     }
 
     private void initializeTableView()
@@ -256,13 +284,53 @@ public class DashboardView implements FxmlView<DashboardViewModel>, Initializabl
 
     private void initializeViewModel()
     {
-        try {
-            this.viewModel.loadPinsIntoController();
-        } catch (Exception e) {
-            Manager.error("Load Pins", "Error loading the pins from the default file.");
-        }
+        this.viewModel.getModelProperty().setValue("2 and 3");
+        this.viewModel.loadPinsIntoController();
     }
 
+    @FXML
+    private void toggleDirectionPin()
+    {
+        if(this.tvPins.getSelectionModel().selectedItemProperty().isNull().get())
+        {
+            Manager.error("Error: Direction", "Pin's direction cannot be changed. Select a pin first.");
+            return;
+        }
+
+        Integer pinNumber = ((Map.Entry<Integer, IPin>)this.tvPins.getSelectionModel().selectedItemProperty().getValue()).getValue().getPinNumber();
+
+        CommandCenter.getDirectionCommand(pinNumber).execute();
+    }
+
+    @FXML
+    private void toggleInitializePin()
+    {
+        if(this.tvPins.getSelectionModel().selectedItemProperty().isNull().get())
+        {
+            Manager.error("Error: Initialize", "Pin's initialization status cannot be changed. Select a pin first.");
+            return;
+        }
+
+        Integer pinNumber = ((Map.Entry<Integer, IPin>)this.tvPins.getSelectionModel().selectedItemProperty().getValue()).getValue().getPinNumber();
+
+        CommandCenter.getInitializeCommand(pinNumber).execute();
+    }
+
+    @FXML
+    private void toggleOnOffPin()
+    {
+        if(this.tvPins.getSelectionModel().selectedItemProperty().isNull().get())
+        {
+            Manager.error("Error: ON/OFF", "Pin's ON/OFF status cannot be changed. Select a pin first.");
+            return;
+        }
+
+        Integer pinNumber = ((Map.Entry<Integer, IPin>)this.tvPins.getSelectionModel().selectedItemProperty().getValue()).getValue().getPinNumber();
+
+        CommandCenter.getOnOffCommand(pinNumber).execute();
+    }
+
+    @FXML
     private void refreshPins()
     {
         this.tvPins.refresh();
