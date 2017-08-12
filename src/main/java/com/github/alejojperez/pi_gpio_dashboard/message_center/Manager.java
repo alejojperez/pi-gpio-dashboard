@@ -6,8 +6,24 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 public class Manager
 {
+    public static void alert(String title, String header, String message, Alert.AlertType alertType, String details, String detailsHeader)
+    {
+        Manager.buildMessage(title, header, message, alertType, details, detailsHeader).showAndWait();
+    }
+
+    public static String getExceptionMessage(Exception e)
+    {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        e.printStackTrace(pw);
+        return sw.toString();
+    }
+
     //region Message
 
     public static void message(String title, String text)

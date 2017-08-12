@@ -9,6 +9,7 @@ import com.github.alejojperez.pi_gpio_dashboard.services.default_pins.entities.P
 import com.github.alejojperez.pi_gpio_dashboard.services.default_pins.entities.PinsList;
 import de.saxsys.mvvmfx.ViewModel;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.Alert;
 
 public class DashboardViewModel implements ViewModel
 {
@@ -64,14 +65,9 @@ public class DashboardViewModel implements ViewModel
      */
     public void loadPinsIntoController()
     {
-        boolean errors = false;
         PinsList pins = Repository.getPinsByModel(this.model.getValue());
 
-        if(pins == null)
-        {
-            errors = true;
-        }
-        else
+        if(pins != null)
         {
             for(Pin pinEntity : pins.getPins())
             {
@@ -80,7 +76,7 @@ public class DashboardViewModel implements ViewModel
                 try {
                     pin = new com.alejojperez.pi_gpio.core.implementations.Pin(pinEntity.getNumber());
                 } catch(Exception e) {
-                    errors = true;
+                    Manager.alert("Loading Error", "Pin #" + pinEntity.getNumber(), "There was an error loading the pin.", Alert.AlertType.ERROR, Manager.getExceptionMessage(e), "Stack Trace:");
                     continue;
                 }
 
@@ -94,8 +90,5 @@ public class DashboardViewModel implements ViewModel
                 this.getGPIOController().addPin(pin);
             }
         }
-
-        if(errors)
-            Manager.error("Loading Error", "We could not all the pins from the default pins file.");
     }
 }
