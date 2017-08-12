@@ -67,25 +67,32 @@ public class DashboardViewModel implements ViewModel
         boolean errors = false;
         PinsList pins = Repository.getPinsByModel(this.model.getValue());
 
-        for(Pin pinEntity : pins.getPins())
+        if(pins == null)
         {
-            IPin pin;
+            errors = true;
+        }
+        else
+        {
+            for(Pin pinEntity : pins.getPins())
+            {
+                IPin pin;
 
-            try {
-                pin = new com.alejojperez.pi_gpio.core.implementations.Pin(pinEntity.getNumber());
-            } catch(Exception e) {
-                errors = true;
-                continue;
+                try {
+                    pin = new com.alejojperez.pi_gpio.core.implementations.Pin(pinEntity.getNumber());
+                } catch(Exception e) {
+                    errors = true;
+                    continue;
+                }
+
+                pin
+                    .setAlias(pinEntity.getAlias())
+                    .setEditable(pinEntity.getEditable())
+                    .setFiveVolts(pinEntity.getFiveVolts())
+                    .setThreeVolts(pinEntity.getThreeVolts())
+                    .setGround(pinEntity.getGround());
+
+                this.getGPIOController().addPin(pin);
             }
-
-            pin
-                .setAlias(pinEntity.getAlias())
-                .setEditable(pinEntity.getEditable())
-                .setFiveVolts(pinEntity.getFiveVolts())
-                .setThreeVolts(pinEntity.getThreeVolts())
-                .setGround(pinEntity.getGround());
-
-            this.getGPIOController().addPin(pin);
         }
 
         if(errors)

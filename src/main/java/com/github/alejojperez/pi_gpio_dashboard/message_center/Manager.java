@@ -1,44 +1,23 @@
 package com.github.alejojperez.pi_gpio_dashboard.message_center;
 
-import com.github.alejojperez.pi_gpio_dashboard.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.Control;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.web.WebView;
-import javafx.stage.Popup;
-import javafx.util.Duration;
-import org.controlsfx.control.NotificationPane;
-import org.controlsfx.control.Notifications;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 
 public class Manager
 {
-    private static int defaultDuration = 5;
-    private static Pos defaultPosition = Pos.BOTTOM_RIGHT;
-
     //region Message
 
     public static void message(String title, String text)
     {
-        Manager.buildMessage(title, text).show();
+        Manager.buildMessage(title, text, Alert.AlertType.NONE).showAndWait();
     }
 
-    public static void message(String title, String text, Duration duration)
+    public static void message(String title, String header, String message)
     {
-        Manager.buildMessage(title, text, duration).show();
-    }
-
-    public static void message(String title, String text, Pos position)
-    {
-        Manager.buildMessage(title, text, position).show();
-    }
-
-    public static void message(String title, String text, EventHandler<ActionEvent> onAction)
-    {
-        Manager.buildMessage(title, text, onAction).show();
+        Manager.buildMessage(title, header, message, Alert.AlertType.NONE).showAndWait();
     }
 
     //endregion
@@ -47,22 +26,12 @@ public class Manager
 
     public static void info(String title, String text)
     {
-        Manager.buildMessage(title, text).showInformation();
+        Manager.buildMessage(title, text, Alert.AlertType.INFORMATION).showAndWait();
     }
 
-    public static void info(String title, String text, Duration duration)
+    public static void info(String title, String header, String message)
     {
-        Manager.buildMessage(title, text, duration).showInformation();
-    }
-
-    public static void info(String title, String text, Pos position)
-    {
-        Manager.buildMessage(title, text, position).showInformation();
-    }
-
-    public static void info(String title, String text, EventHandler<ActionEvent> onAction)
-    {
-        Manager.buildMessage(title, text, onAction).showInformation();
+        Manager.buildMessage(title, header, message, Alert.AlertType.INFORMATION).showAndWait();
     }
 
     //endregion
@@ -71,22 +40,12 @@ public class Manager
 
     public static void confirm(String title, String text)
     {
-        Manager.buildMessage(title, text).showConfirm();
+        Manager.buildMessage(title, text, Alert.AlertType.CONFIRMATION).showAndWait();
     }
 
-    public static void confirm(String title, String text, Duration duration)
+    public static void confirm(String title, String header, String message)
     {
-        Manager.buildMessage(title, text, duration).showConfirm();
-    }
-
-    public static void confirm(String title, String text, Pos position)
-    {
-        Manager.buildMessage(title, text, position).showConfirm();
-    }
-
-    public static void confirm(String title, String text, EventHandler<ActionEvent> onAction)
-    {
-        Manager.buildMessage(title, text, onAction).showConfirm();
+        Manager.buildMessage(title, header, message, Alert.AlertType.CONFIRMATION).showAndWait();
     }
 
     //endregion
@@ -95,22 +54,12 @@ public class Manager
 
     public static void error(String title, String text)
     {
-        Manager.buildMessage(title, text).showError();
+        Manager.buildMessage(title, text, Alert.AlertType.ERROR).showAndWait();
     }
 
-    public static void error(String title, String text, Duration duration)
+    public static void error(String title, String header, String message)
     {
-        Manager.buildMessage(title, text, duration).showError();
-    }
-
-    public static void error(String title, String text, Pos position)
-    {
-        Manager.buildMessage(title, text, position).showError();
-    }
-
-    public static void error(String title, String text, EventHandler<ActionEvent> onAction)
-    {
-        Manager.buildMessage(title, text, onAction).showError();
+        Manager.buildMessage(title, header, message, Alert.AlertType.ERROR).showAndWait();
     }
 
     //endregion
@@ -119,58 +68,70 @@ public class Manager
 
     public static void warning(String title, String text)
     {
-        Manager.buildMessage(title, text).showWarning();
+        Manager.buildMessage(title, text, Alert.AlertType.WARNING).showAndWait();
     }
 
-    public static void warning(String title, String text, Duration duration)
+    public static void warning(String title, String header, String message)
     {
-        Manager.buildMessage(title, text, duration).showWarning();
-    }
-
-    public static void warning(String title, String text, Pos position)
-    {
-        Manager.buildMessage(title, text, position).showWarning();
-    }
-
-    public static void warning(String title, String text, EventHandler<ActionEvent> onAction)
-    {
-        Manager.buildMessage(title, text, onAction).showWarning();
+        Manager.buildMessage(title, header, message, Alert.AlertType.WARNING).showAndWait();
     }
 
     //endregion
 
     //region Builders
 
-    private static Notifications buildMessage(String title, String text)
+    private static Alert buildMessage(String title, String message)
     {
-        return Manager.buildMessage(title, text, null, Duration.seconds(Manager.defaultDuration), Manager.defaultPosition, null);
+        return Manager.buildMessage(title, null, message, Alert.AlertType.NONE, null, null);
     }
 
-    private static Notifications buildMessage(String title, String text, Duration duration)
+    private static Alert buildMessage(String title, String header, String message)
     {
-        return Manager.buildMessage(title, text, null, duration, Manager.defaultPosition, null);
+        return Manager.buildMessage(title, header, message, Alert.AlertType.NONE, null, null);
     }
 
-    private static Notifications buildMessage(String title, String text, Pos position)
+    private static Alert buildMessage(String title, String message, Alert.AlertType alertType)
     {
-        return Manager.buildMessage(title, text, null, Duration.seconds(Manager.defaultDuration), position, null);
+        return Manager.buildMessage(title, null, message, alertType, null, null);
     }
 
-    private static Notifications buildMessage(String title, String text, EventHandler<ActionEvent> onAction)
+    private static Alert buildMessage(String title, String header, String message, Alert.AlertType alertType)
     {
-        return Manager.buildMessage(title, text, null, Duration.seconds(Manager.defaultDuration), Manager.defaultPosition, onAction);
+        return Manager.buildMessage(title, header, message, alertType, null, null);
     }
 
-    public static Notifications buildMessage(String title, String text, Node graphic, Duration duration, Pos position, EventHandler<ActionEvent> onAction)
+    public static Alert buildMessage(String title, String header, String message, Alert.AlertType alertType, String details, String detailsHeader)
     {
-        return Notifications.create()
-                .title(title)
-                .text(text)
-                .graphic(graphic)
-                .hideAfter(duration)
-                .position(position)
-                .onAction(onAction)
-                .darkStyle();
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(message);
+
+        if(details != null && !details.isEmpty())
+        {
+            GridPane expContent = new GridPane();
+            expContent.setMaxWidth(Double.MAX_VALUE);
+
+            if(detailsHeader != null && !detailsHeader.isEmpty())
+            {
+                Label label = new Label(detailsHeader);
+                expContent.add(label, 0, 0);
+            }
+
+            TextArea textArea = new TextArea(details);
+            textArea.setEditable(false);
+            textArea.setWrapText(true);
+            textArea.setMaxWidth(Double.MAX_VALUE);
+            textArea.setMaxHeight(Double.MAX_VALUE);
+            GridPane.setVgrow(textArea, Priority.ALWAYS);
+            GridPane.setHgrow(textArea, Priority.ALWAYS);
+            expContent.add(textArea, 0, 1);
+
+            // Set expandable Exception into the dialog pane.
+            alert.getDialogPane().setExpandableContent(expContent);
+        }
+
+        return alert;
     }
 
     //endregion
