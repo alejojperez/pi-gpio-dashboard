@@ -32,6 +32,8 @@ public class DashboardView implements FxmlView<DashboardViewModel>, Initializabl
     @FXML
     private TableColumn<Map.Entry<Integer, IPin>, String> tcName;
     @FXML
+    private TableColumn<Map.Entry<Integer, IPin>, String> tcGPIONumber;
+    @FXML
     private TableColumn<Map.Entry<Integer, IPin>, String> tcPinNumber;
     @FXML
     private TableColumn<Map.Entry<Integer, IPin>, String> tcInitialized;
@@ -98,10 +100,17 @@ public class DashboardView implements FxmlView<DashboardViewModel>, Initializabl
         );
 
         /**
+         * Table Column GPIO Number
+         */
+        this.tcPinNumber.setCellValueFactory(
+                (TableColumn.CellDataFeatures<Map.Entry<Integer, IPin>, String> p) -> new SimpleStringProperty( Integer.toString(p.getValue().getValue().getGPIOPin()) )
+        );
+        
+        /**
          * Table Column Pin Number
          */
         this.tcPinNumber.setCellValueFactory(
-                (TableColumn.CellDataFeatures<Map.Entry<Integer, IPin>, String> p) -> new SimpleStringProperty( Integer.toString(p.getValue().getValue().getPinNumber()) )
+                (TableColumn.CellDataFeatures<Map.Entry<Integer, IPin>, String> p) -> new SimpleStringProperty( Integer.toString(p.getValue().getValue().getPin()) )
         );
 
         /**
@@ -297,7 +306,7 @@ public class DashboardView implements FxmlView<DashboardViewModel>, Initializabl
             return;
         }
 
-        Integer pinNumber = ((Map.Entry<Integer, IPin>)this.tvPins.getSelectionModel().selectedItemProperty().getValue()).getValue().getPinNumber();
+        Integer pinNumber = ((Map.Entry<Integer, IPin>)this.tvPins.getSelectionModel().selectedItemProperty().getValue()).getValue().getGPIOPin();
 
         CommandCenter.getDirectionCommand(pinNumber).execute();
     }
@@ -311,7 +320,7 @@ public class DashboardView implements FxmlView<DashboardViewModel>, Initializabl
             return;
         }
 
-        Integer pinNumber = ((Map.Entry<Integer, IPin>)this.tvPins.getSelectionModel().selectedItemProperty().getValue()).getValue().getPinNumber();
+        Integer pinNumber = ((Map.Entry<Integer, IPin>)this.tvPins.getSelectionModel().selectedItemProperty().getValue()).getValue().getGPIOPin();
 
         CommandCenter.getInitializeCommand(pinNumber).execute();
     }
@@ -325,7 +334,7 @@ public class DashboardView implements FxmlView<DashboardViewModel>, Initializabl
             return;
         }
 
-        Integer pinNumber = ((Map.Entry<Integer, IPin>)this.tvPins.getSelectionModel().selectedItemProperty().getValue()).getValue().getPinNumber();
+        Integer pinNumber = ((Map.Entry<Integer, IPin>)this.tvPins.getSelectionModel().selectedItemProperty().getValue()).getValue().getGPIOPin();
 
         CommandCenter.getOnOffCommand(pinNumber).execute();
     }

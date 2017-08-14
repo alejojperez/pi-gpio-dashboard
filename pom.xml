@@ -20,7 +20,7 @@
         <dependency>
             <groupId>com.github.alejojperez</groupId>
             <artifactId>pi-gpio</artifactId>
-            <version>1.1.6</version>
+            <version>1.1.8</version>
         </dependency>
 
         <dependency>

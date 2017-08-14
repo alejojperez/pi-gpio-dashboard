@@ -4,12 +4,24 @@ import javax.xml.bind.annotation.XmlAttribute;
 
 public class Pin
 {
+    Integer gpio;
     Integer number;
     String alias;
     boolean editable;
     boolean fiveVolts;
     boolean threeVolts;
     boolean ground;
+
+    public Integer getGpio()
+    {
+        return gpio;
+    }
+
+    @XmlAttribute
+    public void setGpio(Integer gpio)
+    {
+        this.gpio = gpio;
+    }
 
     public Integer getNumber()
     {

@@ -48,6 +48,7 @@
         <TableView fx:id="tvPins" layoutX="119.0" layoutY="135.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
             <columns>
                 <TableColumn fx:id="tcName" prefWidth="75.0" text="Name" />
+                <TableColumn fx:id="tcGPIONumber" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="GPIO" />
                 <TableColumn fx:id="tcPinNumber" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Pin #" />
                 <TableColumn fx:id="tcInitialized" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Initialized" />
                 <TableColumn fx:id="tcDirection" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Direction" />

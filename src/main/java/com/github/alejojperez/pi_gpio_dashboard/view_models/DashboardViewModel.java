@@ -74,9 +74,9 @@ public class DashboardViewModel implements ViewModel
                 IPin pin;
 
                 try {
-                    pin = new com.alejojperez.pi_gpio.core.implementations.Pin(pinEntity.getNumber());
+                    pin = new com.alejojperez.pi_gpio.core.implementations.Pin(pinEntity.getGpio(), pinEntity.getNumber());
                 } catch(Exception e) {
-                    Manager.alert("Loading Error", "Pin #" + pinEntity.getNumber(), "There was an error loading the pin.", Alert.AlertType.ERROR, Manager.getExceptionMessage(e), "Stack Trace:");
+                    Manager.alert("Loading Error", "GPIO #" + pinEntity.getGpio(), "There was an error loading the pin.", Alert.AlertType.ERROR, Manager.getExceptionMessage(e), "Stack Trace:");
                     continue;
                 }
 
