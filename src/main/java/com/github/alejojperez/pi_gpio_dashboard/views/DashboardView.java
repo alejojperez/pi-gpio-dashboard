@@ -102,7 +102,7 @@ public class DashboardView implements FxmlView<DashboardViewModel>, Initializabl
         /**
          * Table Column GPIO Number
          */
-        this.tcPinNumber.setCellValueFactory(
+        this.tcGPIONumber.setCellValueFactory(
                 (TableColumn.CellDataFeatures<Map.Entry<Integer, IPin>, String> p) -> new SimpleStringProperty( Integer.toString(p.getValue().getValue().getGPIOPin()) )
         );
         
