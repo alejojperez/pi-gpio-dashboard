@@ -1,5 +1,6 @@
 package com.github.alejojperez.pi_gpio_dashboard.services.default_pins;
 
+import com.github.alejojperez.pi_gpio_dashboard.Application;
 import com.github.alejojperez.pi_gpio_dashboard.message_center.Manager;
 import com.github.alejojperez.pi_gpio_dashboard.services.default_pins.entities.Model;
 import com.github.alejojperez.pi_gpio_dashboard.services.default_pins.entities.ModelsList;
@@ -21,7 +22,7 @@ public class Repository
     /**
      * The default pins file path
      */
-    public static String defaultPinsFileLocation = "./target/classes/com/github/alejojperez/pi_gpio_dashboard/default-pins.xml";
+    public static String defaultPinsFileLocation = Application.class.getResource("default-pins.xml").getPath();
 
     /**
      * Load the pins file

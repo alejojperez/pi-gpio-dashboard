@@ -32,7 +32,7 @@ public class Application extends javafx.application.Application
     private void configGPIOController()
     {
         // Set the default configuration file location
-        Utils.configPath = "./target/classes/com/github/alejojperez/pi_gpio_dashboard/configuration.xml";
+        Utils.configPath = Application.class.getResource("configuration.xml").getPath();
 
         // Tell the folder watcher to log events
         FolderWatcher.log = true;
