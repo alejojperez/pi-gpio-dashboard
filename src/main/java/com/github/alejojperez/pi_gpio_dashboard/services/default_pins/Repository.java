@@ -11,6 +11,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.io.InputStream;
 
 public class Repository
 {
@@ -22,7 +23,7 @@ public class Repository
     /**
      * The default pins file path
      */
-    public static String defaultPinsFileLocation = Application.class.getResource("default-pins.xml").getPath();
+    public static InputStream defaultPinsFileLocation = Application.class.getResourceAsStream("default-pins.xml");
 
     /**
      * Load the pins file
@@ -31,12 +32,10 @@ public class Repository
     {
         try
         {
-            File file = new File(Repository.defaultPinsFileLocation);
             JAXBContext jaxbContext = JAXBContext.newInstance(ModelsList.class);
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            Repository.modelsList = (ModelsList) jaxbUnmarshaller.unmarshal(file);
-
+            Repository.modelsList = (ModelsList) jaxbUnmarshaller.unmarshal(Repository.defaultPinsFileLocation);
         }
         catch (JAXBException e)
         {
@@ -69,24 +68,24 @@ public class Repository
      */
     public static boolean saveCurrentModelList()
     {
-        if(Repository.modelsList == null)
-        {
-            Manager.error("Default Pins File", "we could not save the current pins file.");
-            return false;
-        }
-
-        try {
-            File file = new File(Repository.defaultPinsFileLocation);
-            JAXBContext jaxbContext = JAXBContext.newInstance(ModelsList.class);
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
-            // output pretty printed
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-            jaxbMarshaller.marshal(modelsList, file);
-        } catch (JAXBException e) {
-            return false;
-        }
+//        if(Repository.modelsList == null)
+//        {
+//            Manager.error("Default Pins File", "we could not save the current pins file.");
+//            return false;
+//        }
+//
+//        try {
+//            File file = new File(Repository.defaultPinsFileLocation);
+//            JAXBContext jaxbContext = JAXBContext.newInstance(ModelsList.class);
+//            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+//
+//            // output pretty printed
+//            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+//
+//            jaxbMarshaller.marshal(modelsList, file);
+//        } catch (JAXBException e) {
+//            return false;
+//        }
 
         return true;
     }
