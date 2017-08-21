@@ -55,25 +55,6 @@
         </resources>
         <plugins>
             <plugin>
-                <groupId>sh.tak.appbundler</groupId>
-                <artifactId>appbundle-maven-plugin</artifactId>
-                <version>1.2.0</version>
-                <configuration>
-                    <mainClass>com.github.alejojperez.pi_gpio_dashboard.Application</mainClass>
-                    <iconFile>com/github/alejojperez/pi_gpio_dashboard/gpio.icns</iconFile>
-                    <generateDiskImageFile>true</generateDiskImageFile>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>bundle</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.5.1</version>
@@ -102,7 +83,6 @@
                 </configuration>
             </plugin>
 
-            <!-- Copy project dependency -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>

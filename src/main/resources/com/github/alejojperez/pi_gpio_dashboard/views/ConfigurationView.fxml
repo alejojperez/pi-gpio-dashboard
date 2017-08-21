@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.alejojperez.pi_gpio_dashboard.views.ConfigurationView">
+    <stylesheets>
+        <URL value="@../CSS/app.css" />
+        <URL value="@CSS/ConfigurationView.css" />
+    </stylesheets>
+    <children>
+        <Label text="Configuration" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <font>
+                <Font name="Roboto" size="24.0" />
+            </font>
+        </Label>
+        <Separator layoutX="21.0" layoutY="50.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+            <children>
+            <Region layoutX="62.0" layoutY="36.0" prefHeight="200.0" prefWidth="200.0" styleClass="region" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+            <Label text="GPIO" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+               <font>
+                  <Font name="Roboto" size="16.0" />
+               </font>
+            </Label>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+            <Label text="Path Placeholder:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="50.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font name="Roboto" size="14.0" />
+               </font>
+            </Label>
+            <TextField AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="70.0">
+               <styleClass>
+                  <String fx:value="form-control" />
+                  <String fx:value="form-control-sm" />
+               </styleClass>
+            </TextField>
+            <Button mnemonicParsing="false" text="..." AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="73.0">
+               <styleClass>
+                  <String fx:value="btn" />
+                  <String fx:value="btn-default" />
+                  <String fx:value="btn-xs" />
+               </styleClass>
+            </Button>
+            </children>
+        </AnchorPane>
+        <Separator layoutX="75.0" layoutY="323.0" prefWidth="200.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+        <AnchorPane prefHeight="36.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <Button mnemonicParsing="false" text="Cancel" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="60.0">
+                    <styleClass>
+                        <String fx:value="btn" />
+                        <String fx:value="btn-warning" />
+                        <String fx:value="btn-sm" />
+                    </styleClass>
+                </Button>
+                <Button mnemonicParsing="false" text="Save" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                    <styleClass>
+                        <String fx:value="btn" />
+                        <String fx:value="btn-primary" />
+                        <String fx:value="btn-sm" />
+                    </styleClass>
+                </Button>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

@@ -1,0 +1,6 @@
+.region {
+    -fx-border-color: #cfcfcf;
+    -fx-border-style: dashed;
+    -fx-border-width: 2px;
+    -fx-padding: 5px;
+}

@@ -24,6 +24,8 @@
                         <MenuItem mnemonicParsing="false" text="Load pins file..." />
                         <MenuItem mnemonicParsing="false" text="Edit default pins file..." />
                         <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Configuration..." />
+                  <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem mnemonicParsing="false" text="Close" />
                     </items>
                 </Menu>
@@ -63,21 +65,21 @@
             <Font name="Roboto" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btnInitialize" layoutX="717.0" layoutY="580.0" mnemonicParsing="false" onAction="#toggleInitializePin" text="Initialize" disable="true" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="157.0">
+      <Button fx:id="btnInitialize" disable="true" layoutX="717.0" layoutY="580.0" mnemonicParsing="false" onAction="#toggleInitializePin" text="Initialize" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="157.0">
          <styleClass>
             <String fx:value="btn" />
             <String fx:value="btn-primary" />
             <String fx:value="btn-sm" />
          </styleClass>
       </Button>
-      <Button fx:id="btnDirection" layoutX="707.0" layoutY="570.0" mnemonicParsing="false" onAction="#toggleDirectionPin" text="Direction" disable="true" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="78.0">
+      <Button fx:id="btnDirection" disable="true" layoutX="707.0" layoutY="570.0" mnemonicParsing="false" onAction="#toggleDirectionPin" text="Direction" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="78.0">
          <styleClass>
             <String fx:value="btn" />
             <String fx:value="btn-primary" />
             <String fx:value="btn-sm" />
          </styleClass>
       </Button>
-      <Button fx:id="btnOnOff" layoutX="697.0" layoutY="560.0" mnemonicParsing="false" onAction="#toggleOnOffPin" text="ON/OFF" disable="true" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
+      <Button fx:id="btnOnOff" disable="true" layoutX="697.0" layoutY="560.0" mnemonicParsing="false" onAction="#toggleOnOffPin" text="ON/OFF" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
          <styleClass>
             <String fx:value="btn" />
             <String fx:value="btn-primary" />
