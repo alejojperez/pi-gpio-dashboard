@@ -35,7 +35,7 @@ public class Application extends javafx.application.Application
     private void configGPIOController()
     {
         // Set the default configuration file location
-        Utils.config = "configuration.xml";
+        Utils.callback = () -> Application.class.getResourceAsStream("configuration.xml");
 
         // Tell the folder watcher to log events
         FolderWatcher.log = true;

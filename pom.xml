@@ -25,7 +25,7 @@
         <dependency>
             <groupId>com.github.alejojperez</groupId>
             <artifactId>pi-gpio</artifactId>
-            <version>2.1.4</version>
+            <version>2.1.5</version>
         </dependency>
 
         <dependency>
@@ -54,6 +54,25 @@
             </resource>
         </resources>
         <plugins>
+            <plugin>
+                <groupId>sh.tak.appbundler</groupId>
+                <artifactId>appbundle-maven-plugin</artifactId>
+                <version>1.2.0</version>
+                <configuration>
+                    <mainClass>com.github.alejojperez.pi_gpio_dashboard.Application</mainClass>
+                    <iconFile>com/github/alejojperez/pi_gpio_dashboard/gpio.icns</iconFile>
+                    <generateDiskImageFile>true</generateDiskImageFile>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>bundle</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
