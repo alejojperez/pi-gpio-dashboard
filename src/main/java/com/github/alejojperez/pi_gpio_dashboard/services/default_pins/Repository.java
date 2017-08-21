@@ -22,7 +22,7 @@ public class Repository
     /**
      * The default pins file path
      */
-    public static String defaultPinsFileLocation = Application.class.getResource("default-pins.xml").getPath();
+    public static String defaultPinsFileLocation = "default-pins.xml";
 
     /**
      * Load the pins file
