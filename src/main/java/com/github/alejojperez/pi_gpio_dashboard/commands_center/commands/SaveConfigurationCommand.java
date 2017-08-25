@@ -1,10 +1,7 @@
 package com.github.alejojperez.pi_gpio_dashboard.commands_center.commands;
 
-import com.alejojperez.pi_gpio.core.Utils;
 import com.alejojperez.pi_gpio.core.config.Configuration;
-import com.alejojperez.pi_gpio.core.contracts.IPin;
-import com.alejojperez.pi_gpio.core.implementations.GPIOController;
-import com.alejojperez.pi_gpio.core.implementations.Pin;
+import com.github.alejojperez.pi_gpio_dashboard.Application;
 import com.github.alejojperez.pi_gpio_dashboard.message_center.Manager;
 import de.saxsys.mvvmfx.utils.commands.Action;
 import javafx.beans.value.ObservableValue;
@@ -45,14 +42,14 @@ public class SaveConfigurationCommand extends AbstractCommand
             protected void action() throws Exception
             {
                 try {
-                    File file = new File(Utils.callback.resolve());
+                    File file = new File(Application.class.getResource("configuration.xml").getPath());
                     JAXBContext jaxbContext = JAXBContext.newInstance(Configuration.class);
                     Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
                     // output pretty printed
                     jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-                    jaxbMarshaller.marshal(modelsList, file);
+                    jaxbMarshaller.marshal(configuration, file);
                 } catch (JAXBException e) {
                     Manager.buildMessage("Configuration", "Error Saving Configuration", "We could not save the configuration details to the file.", Alert.AlertType.ERROR, null, "");
                 }
