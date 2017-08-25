@@ -11,65 +11,248 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.alejojperez.pi_gpio_dashboard.views.ConfigurationView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0"
+            prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.github.alejojperez.pi_gpio_dashboard.views.ConfigurationView">
     <stylesheets>
-        <URL value="@../CSS/app.css" />
-        <URL value="@CSS/ConfigurationView.css" />
+        <URL value="@../CSS/app.css"/>
+        <URL value="@CSS/ConfigurationView.css"/>
     </stylesheets>
     <children>
         <Label text="Configuration" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
             <font>
-                <Font name="Roboto" size="24.0" />
+                <Font name="Roboto" size="24.0"/>
             </font>
         </Label>
-        <Separator layoutX="21.0" layoutY="50.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
-        <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+        <Separator layoutX="21.0" layoutY="50.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0"
+                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0"/>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0"
+                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
             <children>
-            <Region layoutX="62.0" layoutY="36.0" prefHeight="200.0" prefWidth="200.0" styleClass="region" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
-            <Label text="GPIO" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
-               <font>
-                  <Font name="Roboto" size="16.0" />
-               </font>
-            </Label>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-            <Label text="Path Placeholder:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="50.0">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <font>
-                  <Font name="Roboto" size="14.0" />
-               </font>
-            </Label>
-            <TextField AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="70.0">
-               <styleClass>
-                  <String fx:value="form-control" />
-                  <String fx:value="form-control-sm" />
-               </styleClass>
-            </TextField>
-            <Button mnemonicParsing="false" text="..." AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="73.0">
-               <styleClass>
-                  <String fx:value="btn" />
-                  <String fx:value="btn-default" />
-                  <String fx:value="btn-xs" />
-               </styleClass>
-            </Button>
+                <Region layoutX="62.0" layoutY="36.0" prefHeight="200.0" prefWidth="200.0" styleClass="region"
+                        AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0"
+                        AnchorPane.topAnchor="15.0"/>
+                <Label text="GPIO" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+                    <font>
+                        <Font name="Roboto" size="16.0"/>
+                    </font>
+                </Label>
+                <AnchorPane prefHeight="55.0" prefWidth="200.0" AnchorPane.leftAnchor="15.0"
+                            AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="47.0">
+                    <children>
+                        <Label text="Path Placeholder:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+                            <opaqueInsets>
+                                <Insets/>
+                            </opaqueInsets>
+                            <font>
+                                <Font name="Roboto" size="14.0"/>
+                            </font>
+                        </Label>
+                        <TextField AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="35.0"
+                                   AnchorPane.topAnchor="25.0" fx:id="txtPathPlaceholder">
+                            <styleClass>
+                                <String fx:value="form-control"/>
+                                <String fx:value="form-control-sm"/>
+                            </styleClass>
+                        </TextField>
+                        <Button mnemonicParsing="false" text="..." AnchorPane.rightAnchor="8.0"
+                                AnchorPane.topAnchor="28.0">
+                            <styleClass>
+                                <String fx:value="btn"/>
+                                <String fx:value="btn-default"/>
+                                <String fx:value="btn-xs"/>
+                            </styleClass>
+                        </Button>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="55.0" prefWidth="200.0"
+                            AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="102.0">
+                    <children>
+                        <Label text="Direction Path:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+                            <opaqueInsets>
+                                <Insets/>
+                            </opaqueInsets>
+                            <font>
+                                <Font name="Roboto" size="14.0"/>
+                            </font>
+                        </Label>
+                        <TextField AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="35.0"
+                                   AnchorPane.topAnchor="25.0" fx:id="txtDirectionPath">
+                            <styleClass>
+                                <String fx:value="form-control"/>
+                                <String fx:value="form-control-sm"/>
+                            </styleClass>
+                        </TextField>
+                        <Button mnemonicParsing="false" text="..." AnchorPane.rightAnchor="8.0"
+                                AnchorPane.topAnchor="28.0">
+                            <styleClass>
+                                <String fx:value="btn"/>
+                                <String fx:value="btn-default"/>
+                                <String fx:value="btn-xs"/>
+                            </styleClass>
+                        </Button>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="55.0" prefWidth="200.0"
+                            AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="157.0">
+                    <children>
+                        <Label text="Export Path:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+                            <opaqueInsets>
+                                <Insets/>
+                            </opaqueInsets>
+                            <font>
+                                <Font name="Roboto" size="14.0"/>
+                            </font>
+                        </Label>
+                        <TextField AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="35.0"
+                                   AnchorPane.topAnchor="25.0" fx:id="txtExportPath">
+                            <styleClass>
+                                <String fx:value="form-control"/>
+                                <String fx:value="form-control-sm"/>
+                            </styleClass>
+                        </TextField>
+                        <Button mnemonicParsing="false" text="..." AnchorPane.rightAnchor="8.0"
+                                AnchorPane.topAnchor="28.0">
+                            <styleClass>
+                                <String fx:value="btn"/>
+                                <String fx:value="btn-default"/>
+                                <String fx:value="btn-xs"/>
+                            </styleClass>
+                        </Button>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="30.0" layoutY="30.0" prefHeight="55.0" prefWidth="200.0"
+                            AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="212.0">
+                    <children>
+                        <Label text="Unexport Path:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+                            <opaqueInsets>
+                                <Insets/>
+                            </opaqueInsets>
+                            <font>
+                                <Font name="Roboto" size="14.0"/>
+                            </font>
+                        </Label>
+                        <TextField AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="35.0"
+                                   AnchorPane.topAnchor="25.0" fx:id="txtUnexportPath">
+                            <styleClass>
+                                <String fx:value="form-control"/>
+                                <String fx:value="form-control-sm"/>
+                            </styleClass>
+                        </TextField>
+                        <Button mnemonicParsing="false" text="..." AnchorPane.rightAnchor="8.0"
+                                AnchorPane.topAnchor="28.0">
+                            <styleClass>
+                                <String fx:value="btn"/>
+                                <String fx:value="btn-default"/>
+                                <String fx:value="btn-xs"/>
+                            </styleClass>
+                        </Button>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="40.0" layoutY="40.0" prefHeight="55.0" prefWidth="200.0"
+                            AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="267.0">
+                    <children>
+                        <Label text="Value Path:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+                            <opaqueInsets>
+                                <Insets/>
+                            </opaqueInsets>
+                            <font>
+                                <Font name="Roboto" size="14.0"/>
+                            </font>
+                        </Label>
+                        <TextField AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="35.0"
+                                   AnchorPane.topAnchor="25.0" fx:id="txtValuePath">
+                            <styleClass>
+                                <String fx:value="form-control"/>
+                                <String fx:value="form-control-sm"/>
+                            </styleClass>
+                        </TextField>
+                        <Button mnemonicParsing="false" text="..." AnchorPane.rightAnchor="8.0"
+                                AnchorPane.topAnchor="28.0">
+                            <styleClass>
+                                <String fx:value="btn"/>
+                                <String fx:value="btn-default"/>
+                                <String fx:value="btn-xs"/>
+                            </styleClass>
+                        </Button>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="50.0" layoutY="50.0" prefHeight="55.0" prefWidth="200.0"
+                            AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="322.0">
+                    <children>
+                        <Label text="Is Initialized Path:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+                            <opaqueInsets>
+                                <Insets/>
+                            </opaqueInsets>
+                            <font>
+                                <Font name="Roboto" size="14.0"/>
+                            </font>
+                        </Label>
+                        <TextField AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="35.0"
+                                   AnchorPane.topAnchor="25.0" fx:id="txtIsInitializedPath">
+                            <styleClass>
+                                <String fx:value="form-control"/>
+                                <String fx:value="form-control-sm"/>
+                            </styleClass>
+                        </TextField>
+                        <Button mnemonicParsing="false" text="..." AnchorPane.rightAnchor="8.0"
+                                AnchorPane.topAnchor="28.0">
+                            <styleClass>
+                                <String fx:value="btn"/>
+                                <String fx:value="btn-default"/>
+                                <String fx:value="btn-xs"/>
+                            </styleClass>
+                        </Button>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="60.0" layoutY="60.0" prefHeight="55.0" prefWidth="200.0"
+                            AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="377.0">
+                    <children>
+                        <Label text="General Path:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+                            <opaqueInsets>
+                                <Insets/>
+                            </opaqueInsets>
+                            <font>
+                                <Font name="Roboto" size="14.0"/>
+                            </font>
+                        </Label>
+                        <TextField AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="35.0"
+                                   AnchorPane.topAnchor="25.0" fx:id="txtGeneralPath">
+                            <styleClass>
+                                <String fx:value="form-control"/>
+                                <String fx:value="form-control-sm"/>
+                            </styleClass>
+                        </TextField>
+                        <Button mnemonicParsing="false" text="..." AnchorPane.rightAnchor="8.0"
+                                AnchorPane.topAnchor="28.0">
+                            <styleClass>
+                                <String fx:value="btn"/>
+                                <String fx:value="btn-default"/>
+                                <String fx:value="btn-xs"/>
+                            </styleClass>
+                        </Button>
+                    </children>
+                </AnchorPane>
             </children>
         </AnchorPane>
-        <Separator layoutX="75.0" layoutY="323.0" prefWidth="200.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-        <AnchorPane prefHeight="36.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <Separator layoutX="75.0" layoutY="323.0" prefWidth="200.0" AnchorPane.bottomAnchor="35.0"
+                   AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
+        <AnchorPane prefHeight="36.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                    AnchorPane.rightAnchor="0.0">
             <children>
-                <Button mnemonicParsing="false" text="Cancel" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="60.0">
+                <Button mnemonicParsing="false" text="Cancel" AnchorPane.bottomAnchor="5.0"
+                        AnchorPane.rightAnchor="60.0" onAction="#closeWindow">
                     <styleClass>
-                        <String fx:value="btn" />
-                        <String fx:value="btn-warning" />
-                        <String fx:value="btn-sm" />
+                        <String fx:value="btn"/>
+                        <String fx:value="btn-warning"/>
+                        <String fx:value="btn-sm"/>
                     </styleClass>
                 </Button>
                 <Button mnemonicParsing="false" text="Save" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
                     <styleClass>
-                        <String fx:value="btn" />
-                        <String fx:value="btn-primary" />
-                        <String fx:value="btn-sm" />
+                        <String fx:value="btn"/>
+                        <String fx:value="btn-primary"/>
+                        <String fx:value="btn-sm"/>
                     </styleClass>
                 </Button>
             </children>

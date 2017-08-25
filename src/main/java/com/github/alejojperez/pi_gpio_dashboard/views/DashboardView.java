@@ -2,21 +2,27 @@ package com.github.alejojperez.pi_gpio_dashboard.views;
 
 import com.alejojperez.pi_gpio.core.contracts.IPin;
 import com.alejojperez.pi_gpio.core.implementations.Pin;
-import com.github.alejojperez.pi_gpio_dashboard.commands.CommandCenter;
+import com.github.alejojperez.pi_gpio_dashboard.commands_center.CommandCenter;
 import com.github.alejojperez.pi_gpio_dashboard.message_center.Manager;
 import com.github.alejojperez.pi_gpio_dashboard.view_models.DashboardViewModel;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import de.saxsys.mvvmfx.FluentViewLoader;
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;
+import de.saxsys.mvvmfx.ViewTuple;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.MapChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import java.net.URL;
 import java.util.Map;
@@ -295,6 +301,22 @@ public class DashboardView implements FxmlView<DashboardViewModel>, Initializabl
     {
         this.viewModel.getModelProperty().setValue("2 and 3");
         this.viewModel.loadPinsIntoController();
+    }
+
+    @FXML
+    private void showConfigurationWindow()
+    {
+        Stage configurationWindow = new Stage();
+        configurationWindow.setTitle("GPIO Pins: Configuration");
+        configurationWindow.initModality(Modality.APPLICATION_MODAL);
+
+        configurationWindow.setOnHidden(event -> this.initializeViewModel());
+
+        ViewTuple viewTuple = FluentViewLoader.fxmlView(ConfigurationView.class).load();
+        Parent root = viewTuple.getView();
+
+        configurationWindow.setScene(new Scene(root));
+        configurationWindow.show();
     }
 
     @FXML

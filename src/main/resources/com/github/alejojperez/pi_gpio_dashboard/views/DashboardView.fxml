@@ -15,80 +15,94 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.alejojperez.pi_gpio_dashboard.views.DashboardView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+            prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.github.alejojperez.pi_gpio_dashboard.views.DashboardView">
     <children>
-        <MenuBar layoutX="10.0" prefHeight="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <MenuBar layoutX="10.0" prefHeight="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                 AnchorPane.topAnchor="0.0">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Load pins file..." />
-                        <MenuItem mnemonicParsing="false" text="Edit default pins file..." />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Configuration..." />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem mnemonicParsing="false" text="Load pins file..."/>
+                        <MenuItem mnemonicParsing="false" text="Edit default pins file..."/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" onAction="#showConfigurationWindow" text="Configuration..."/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" text="Close"/>
                     </items>
                 </Menu>
             </menus>
         </MenuBar>
-        <TextField layoutX="492.0" layoutY="5.0" promptText="Search..." AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="6.5">
+        <TextField layoutX="492.0" layoutY="5.0" promptText="Search..." AnchorPane.rightAnchor="90.0"
+                   AnchorPane.topAnchor="6.5">
             <styleClass>
-                <String fx:value="form-control" />
-                <String fx:value="form-control-sm" />
+                <String fx:value="form-control"/>
+                <String fx:value="form-control-sm"/>
             </styleClass>
         </TextField>
-        <Button layoutX="682.0" layoutY="16.0" mnemonicParsing="false" onAction="#refreshPins" text="Refresh" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+        <Button layoutX="682.0" layoutY="16.0" mnemonicParsing="false" onAction="#refreshPins" text="Refresh"
+                AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
             <graphic>
-                <FontAwesomeIconView glyphName="REFRESH" glyphStyle="-fx-fill: #fff" />
+                <FontAwesomeIconView glyphName="REFRESH" glyphStyle="-fx-fill: #fff"/>
             </graphic>
             <styleClass>
-                <String fx:value="btn" />
-                <String fx:value="btn-primary" />
-                <String fx:value="btn-sm" />
+                <String fx:value="btn"/>
+                <String fx:value="btn-primary"/>
+                <String fx:value="btn-sm"/>
             </styleClass>
         </Button>
-        <TableView fx:id="tvPins" layoutX="119.0" layoutY="135.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+        <TableView fx:id="tvPins" layoutX="119.0" layoutY="135.0" prefHeight="200.0" prefWidth="200.0"
+                   AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                   AnchorPane.topAnchor="40.0">
             <columns>
-                <TableColumn fx:id="tcName" prefWidth="75.0" text="Name" />
-                <TableColumn fx:id="tcGPIONumber" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="GPIO" />
-                <TableColumn fx:id="tcPinNumber" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Pin #" />
-                <TableColumn fx:id="tcInitialized" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Initialized" />
-                <TableColumn fx:id="tcDirection" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Direction" />
-                <TableColumn fx:id="tcOnOff" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="ON/OFF" />
+                <TableColumn fx:id="tcName" prefWidth="75.0" text="Name"/>
+                <TableColumn fx:id="tcGPIONumber" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="GPIO"/>
+                <TableColumn fx:id="tcPinNumber" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Pin #"/>
+                <TableColumn fx:id="tcInitialized" maxWidth="100.0" minWidth="100.0" prefWidth="100.0"
+                             text="Initialized"/>
+                <TableColumn fx:id="tcDirection" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Direction"/>
+                <TableColumn fx:id="tcOnOff" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="ON/OFF"/>
             </columns>
             <columnResizePolicy>
-                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
             </columnResizePolicy>
         </TableView>
-      <Label layoutX="505.0" layoutY="573.0" text="Toggle:" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="230.0">
-         <font>
-            <Font name="Roboto" size="18.0" />
-         </font>
-      </Label>
-      <Button fx:id="btnInitialize" disable="true" layoutX="717.0" layoutY="580.0" mnemonicParsing="false" onAction="#toggleInitializePin" text="Initialize" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="157.0">
-         <styleClass>
-            <String fx:value="btn" />
-            <String fx:value="btn-primary" />
-            <String fx:value="btn-sm" />
-         </styleClass>
-      </Button>
-      <Button fx:id="btnDirection" disable="true" layoutX="707.0" layoutY="570.0" mnemonicParsing="false" onAction="#toggleDirectionPin" text="Direction" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="78.0">
-         <styleClass>
-            <String fx:value="btn" />
-            <String fx:value="btn-primary" />
-            <String fx:value="btn-sm" />
-         </styleClass>
-      </Button>
-      <Button fx:id="btnOnOff" disable="true" layoutX="697.0" layoutY="560.0" mnemonicParsing="false" onAction="#toggleOnOffPin" text="ON/OFF" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
-         <styleClass>
-            <String fx:value="btn" />
-            <String fx:value="btn-primary" />
-            <String fx:value="btn-sm" />
-         </styleClass>
-      </Button>
+        <Label layoutX="505.0" layoutY="573.0" text="Toggle:" AnchorPane.bottomAnchor="8.0"
+               AnchorPane.rightAnchor="230.0">
+            <font>
+                <Font name="Roboto" size="18.0"/>
+            </font>
+        </Label>
+        <Button fx:id="btnInitialize" disable="true" layoutX="717.0" layoutY="580.0" mnemonicParsing="false"
+                onAction="#toggleInitializePin" text="Initialize" AnchorPane.bottomAnchor="5.0"
+                AnchorPane.rightAnchor="157.0">
+            <styleClass>
+                <String fx:value="btn"/>
+                <String fx:value="btn-primary"/>
+                <String fx:value="btn-sm"/>
+            </styleClass>
+        </Button>
+        <Button fx:id="btnDirection" disable="true" layoutX="707.0" layoutY="570.0" mnemonicParsing="false"
+                onAction="#toggleDirectionPin" text="Direction" AnchorPane.bottomAnchor="5.0"
+                AnchorPane.rightAnchor="78.0">
+            <styleClass>
+                <String fx:value="btn"/>
+                <String fx:value="btn-primary"/>
+                <String fx:value="btn-sm"/>
+            </styleClass>
+        </Button>
+        <Button fx:id="btnOnOff" disable="true" layoutX="697.0" layoutY="560.0" mnemonicParsing="false"
+                onAction="#toggleOnOffPin" text="ON/OFF" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
+            <styleClass>
+                <String fx:value="btn"/>
+                <String fx:value="btn-primary"/>
+                <String fx:value="btn-sm"/>
+            </styleClass>
+        </Button>
     </children>
     <stylesheets>
-        <URL value="@../CSS/app.css" />
-        <URL value="@CSS/DashboardView.css" />
+        <URL value="@../CSS/app.css"/>
+        <URL value="@CSS/DashboardView.css"/>
     </stylesheets>
 </AnchorPane>
