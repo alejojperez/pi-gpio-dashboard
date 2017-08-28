@@ -18,7 +18,7 @@ public class Repository
     /**
      * Loaded xml file
      */
-    private static ModelsList modelsList;
+    public static ModelsList modelsList;
 
     /**
      * The default pins file path

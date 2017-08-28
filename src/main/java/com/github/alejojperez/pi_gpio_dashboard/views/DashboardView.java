@@ -14,6 +14,7 @@ import de.saxsys.mvvmfx.ViewTuple;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.MapChangeListener;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -304,19 +305,35 @@ public class DashboardView implements FxmlView<DashboardViewModel>, Initializabl
     }
 
     @FXML
+    private void showDefaultPinsWindow()
+    {
+        Stage window = new Stage();
+        window.setTitle("GPIO Pins: Default Pins");
+        window.initModality(Modality.APPLICATION_MODAL);
+
+        window.setOnHidden(event -> this.initializeViewModel());
+
+        ViewTuple viewTuple = FluentViewLoader.fxmlView(DefaultPinsView.class).load();
+        Parent root = viewTuple.getView();
+
+        window.setScene(new Scene(root));
+        window.show();
+    }
+
+    @FXML
     private void showConfigurationWindow()
     {
-        Stage configurationWindow = new Stage();
-        configurationWindow.setTitle("GPIO Pins: Configuration");
-        configurationWindow.initModality(Modality.APPLICATION_MODAL);
+        Stage window = new Stage();
+        window.setTitle("GPIO Pins: Configuration");
+        window.initModality(Modality.APPLICATION_MODAL);
 
-        configurationWindow.setOnHidden(event -> this.initializeViewModel());
+        window.setOnHidden(event -> this.initializeViewModel());
 
         ViewTuple viewTuple = FluentViewLoader.fxmlView(ConfigurationView.class).load();
         Parent root = viewTuple.getView();
 
-        configurationWindow.setScene(new Scene(root));
-        configurationWindow.show();
+        window.setScene(new Scene(root));
+        window.show();
     }
 
     @FXML

@@ -1,10 +1,8 @@
 package com.github.alejojperez.pi_gpio_dashboard.commands_center;
 
 import com.alejojperez.pi_gpio.core.config.Configuration;
-import com.github.alejojperez.pi_gpio_dashboard.commands_center.commands.SaveConfigurationCommand;
-import com.github.alejojperez.pi_gpio_dashboard.commands_center.commands.TogglePinDirectionCommand;
-import com.github.alejojperez.pi_gpio_dashboard.commands_center.commands.TogglePinInitializationCommand;
-import com.github.alejojperez.pi_gpio_dashboard.commands_center.commands.TogglePinOnOffCommand;
+import com.github.alejojperez.pi_gpio_dashboard.commands_center.commands.*;
+import com.github.alejojperez.pi_gpio_dashboard.services.default_pins.entities.ModelsList;
 import de.saxsys.mvvmfx.utils.commands.Command;
 import java.util.HashMap;
 
@@ -64,9 +62,19 @@ public class CommandCenter
     private static Command saveConfigurationCommand;
     public static Command getSaveConfigurationCommand(Configuration configuration, boolean reload)
     {
-        if(reload || CommandCenter.initializeCommand == null)
+        if(reload || CommandCenter.saveConfigurationCommand == null)
             CommandCenter.saveConfigurationCommand = new SaveConfigurationCommand(configuration, true);
 
         return CommandCenter.saveConfigurationCommand;
+    }
+
+    ////////////////////////// Save Default Pins //////////////////////////
+    private static Command saveDefaultPinsCommand;
+    public static Command getSaveDefaultPinsCommand(ModelsList modelsList, boolean reload)
+    {
+        if(reload || CommandCenter.saveDefaultPinsCommand == null)
+            CommandCenter.saveDefaultPinsCommand = new SaveDefaultPinsCommand(modelsList, true);
+
+        return CommandCenter.saveDefaultPinsCommand;
     }
 }

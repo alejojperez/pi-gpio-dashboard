@@ -60,6 +60,5 @@ public class ConfigurationView implements FxmlView<ConfigurationViewModel>, Init
     private void save(ActionEvent actionEvent)
     {
         this.viewModel.saveConfiguration();
-        Manager.info("Configuration", "Configuration saved to the its file.");
     }
 }

@@ -24,9 +24,7 @@
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Load pins file..."/>
-                        <MenuItem mnemonicParsing="false" text="Edit default pins file..."/>
-                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" onAction="#showDefaultPinsWindow" text="Default pins..."/>
                         <MenuItem mnemonicParsing="false" onAction="#showConfigurationWindow" text="Configuration..."/>
                         <SeparatorMenuItem mnemonicParsing="false"/>
                         <MenuItem mnemonicParsing="false" text="Close"/>
