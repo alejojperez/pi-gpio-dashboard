@@ -23,7 +23,7 @@
                 <ChoiceBox fx:id="cbModels" layoutX="24.0" layoutY="12.0" prefWidth="150.0" AnchorPane.leftAnchor="12.0"
                            AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="12.0">
                 </ChoiceBox>
-                <Button mnemonicParsing="false" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="16.0">
+                <Button mnemonicParsing="false" onAction="#addPin" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="16.0">
                     <styleClass>
                         <String fx:value="btn"/>
                         <String fx:value="btn-primary"/>

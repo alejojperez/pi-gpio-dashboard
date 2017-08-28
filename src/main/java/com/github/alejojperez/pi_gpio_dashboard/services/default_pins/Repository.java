@@ -23,7 +23,7 @@ public class Repository
     /**
      * The default pins file path
      */
-    public static InputStream defaultPinsFileLocation = Application.class.getResourceAsStream("default-pins.xml");
+    public static String defaultPinsFileLocation = Application.class.getResource("default-pins.xml").getPath();
 
     /**
      * Load the pins file
@@ -32,11 +32,11 @@ public class Repository
     {
         try
         {
+            File file = new File(Repository.defaultPinsFileLocation);
             JAXBContext jaxbContext = JAXBContext.newInstance(ModelsList.class);
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            Repository.modelsList = (ModelsList) jaxbUnmarshaller.unmarshal(Repository.defaultPinsFileLocation);
-
+            Repository.modelsList = (ModelsList) jaxbUnmarshaller.unmarshal(file);
         }
         catch (JAXBException e)
         {

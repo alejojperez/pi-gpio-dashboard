@@ -34,8 +34,6 @@ public class CommandCenter
         if(!CommandCenter.directionCommand.containsKey(pinNumber))
         {
             TogglePinDirectionCommand command = new TogglePinDirectionCommand(pinNumber, true);
-            CommandCenter.onOffCommand.put(pinNumber, command);
-
             CommandCenter.directionCommand.put(pinNumber, command);
         }
 
@@ -52,7 +50,7 @@ public class CommandCenter
         if(!CommandCenter.initializeCommand.containsKey(pinNumber))
         {
             TogglePinInitializationCommand command = new TogglePinInitializationCommand(pinNumber, true);
-            CommandCenter.onOffCommand.put(pinNumber, command);
+            CommandCenter.initializeCommand.put(pinNumber, command);
         }
 
         return CommandCenter.initializeCommand.get(pinNumber);

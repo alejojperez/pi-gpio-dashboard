@@ -160,7 +160,6 @@ public class DashboardView implements FxmlView<DashboardViewModel>, Initializabl
                                 FontAwesomeIconView initializedIconView = new FontAwesomeIconView(initializedIcon);
                                 initializedIconView.setGlyphStyle("-fx-fill: #"+color);
 
-
                                 /**
                                  * Add all components
                                  */
@@ -317,7 +316,10 @@ public class DashboardView implements FxmlView<DashboardViewModel>, Initializabl
         window.setTitle("GPIO Pins: Default Pins");
         window.initModality(Modality.APPLICATION_MODAL);
 
-        window.setOnHidden(event -> this.initializeViewModel());
+        window.setOnHidden(event -> {
+            this.initializeViewModel();
+            this.initializeTableView();
+        });
 
         ViewTuple viewTuple = FluentViewLoader.fxmlView(DefaultPinsView.class).load();
         Parent root = viewTuple.getView();

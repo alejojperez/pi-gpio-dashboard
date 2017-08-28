@@ -1,11 +1,8 @@
 package com.github.alejojperez.pi_gpio_dashboard.views;
 
 import com.github.alejojperez.pi_gpio_dashboard.message_center.Manager;
-import com.github.alejojperez.pi_gpio_dashboard.services.default_pins.Repository;
 import com.github.alejojperez.pi_gpio_dashboard.services.default_pins.entities.Model;
-import com.github.alejojperez.pi_gpio_dashboard.services.default_pins.entities.ModelsList;
 import com.github.alejojperez.pi_gpio_dashboard.services.default_pins.entities.Pin;
-import com.github.alejojperez.pi_gpio_dashboard.services.default_pins.entities.PinsList;
 import com.github.alejojperez.pi_gpio_dashboard.view_models.DefaultPinsViewModel;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -21,7 +18,6 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -251,6 +247,32 @@ public class DefaultPinsView implements FxmlView<DefaultPinsViewModel>, Initiali
 
             this.tvDefaultPins.setItems(FXCollections.observableArrayList(model.getPinsList().getPins()));
         });
+    }
+
+    @FXML
+    private void addPin()
+    {
+        Model model = viewModel.getModel(cbModels.getValue().toString());
+
+        if(model == null)
+        {
+            Manager.error("Default Pins", "The pin can not be added because the model ["+cbModels.getValue().toString()+"] is not valid.");
+            return;
+        }
+
+        List<Pin> pins = model.getPinsList().getPins();
+
+        Pin pin = new Pin();
+        pin.setAlias("");
+        pin.setGpio(0);
+        pin.setNumber(0);
+        pin.setEditable(true);
+        pin.setFiveVolts(false);
+        pin.setGround(false);
+        pin.setThreeVolts(false);
+
+        pins.add(pin);
+        this.tvDefaultPins.setItems(FXCollections.observableArrayList(pins));
     }
 
     @FXML

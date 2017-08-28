@@ -8,6 +8,11 @@ import de.saxsys.mvvmfx.ViewModel;
 
 public class DefaultPinsViewModel implements ViewModel
 {
+    public DefaultPinsViewModel()
+    {
+        Repository.load();
+    }
+
     public ModelsList getModels()
     {
         return Repository.getModels();

@@ -65,6 +65,10 @@ public class DashboardViewModel implements ViewModel
      */
     public void loadPinsIntoController()
     {
+        Repository.load();
+
+        this.getGPIOController().getPins().clear();
+
         PinsList pins = Repository.getPinsByModel(this.model.getValue());
 
         if(pins != null)
