@@ -1,5 +1,6 @@
 package com.github.alejojperez.pi_gpio_dashboard.views;
 
+import com.github.alejojperez.pi_gpio_dashboard.message_center.Manager;
 import com.github.alejojperez.pi_gpio_dashboard.view_models.ConfigurationViewModel;
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;
@@ -9,8 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.beans.EventHandler;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -55,5 +54,12 @@ public class ConfigurationView implements FxmlView<ConfigurationViewModel>, Init
     private void closeWindow(ActionEvent actionEvent)
     {
         ((Stage) ( (Button)actionEvent.getSource() ).getScene().getWindow() ).close();
+    }
+
+    @FXML
+    private void save(ActionEvent actionEvent)
+    {
+        this.viewModel.saveConfiguration();
+        Manager.info("Configuration", "Configuration saved to the its file.");
     }
 }

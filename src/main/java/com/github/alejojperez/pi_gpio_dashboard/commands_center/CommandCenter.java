@@ -1,5 +1,7 @@
 package com.github.alejojperez.pi_gpio_dashboard.commands_center;
 
+import com.alejojperez.pi_gpio.core.config.Configuration;
+import com.github.alejojperez.pi_gpio_dashboard.commands_center.commands.SaveConfigurationCommand;
 import com.github.alejojperez.pi_gpio_dashboard.commands_center.commands.TogglePinDirectionCommand;
 import com.github.alejojperez.pi_gpio_dashboard.commands_center.commands.TogglePinInitializationCommand;
 import com.github.alejojperez.pi_gpio_dashboard.commands_center.commands.TogglePinOnOffCommand;
@@ -49,9 +51,22 @@ public class CommandCenter
         if(CommandCenter.initializeCommand == null)
             CommandCenter.initializeCommand = new HashMap<>();
 
-        TogglePinInitializationCommand command = new TogglePinInitializationCommand(pinNumber, true);
-        CommandCenter.onOffCommand.put(pinNumber, command);
+        if(!CommandCenter.initializeCommand.containsKey(pinNumber))
+        {
+            TogglePinInitializationCommand command = new TogglePinInitializationCommand(pinNumber, true);
+            CommandCenter.onOffCommand.put(pinNumber, command);
+        }
 
         return CommandCenter.initializeCommand.get(pinNumber);
+    }
+
+    ////////////////////////// Save Configuration //////////////////////////
+    private static Command saveConfigurationCommand;
+    public static Command getSaveConfigurationCommand(Configuration configuration, boolean reload)
+    {
+        if(reload || CommandCenter.initializeCommand == null)
+            CommandCenter.saveConfigurationCommand = new SaveConfigurationCommand(configuration, true);
+
+        return CommandCenter.saveConfigurationCommand;
     }
 }

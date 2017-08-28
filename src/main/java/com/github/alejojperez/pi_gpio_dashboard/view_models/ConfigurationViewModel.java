@@ -1,8 +1,12 @@
 package com.github.alejojperez.pi_gpio_dashboard.view_models;
 
 import com.alejojperez.pi_gpio.core.Utils;
+import com.alejojperez.pi_gpio.core.config.Configuration;
 import com.alejojperez.pi_gpio.core.config.GPIO;
+import com.alejojperez.pi_gpio.core.config.Paths;
+import com.github.alejojperez.pi_gpio_dashboard.commands_center.CommandCenter;
 import de.saxsys.mvvmfx.ViewModel;
+import de.saxsys.mvvmfx.utils.commands.Command;
 import javafx.beans.property.SimpleStringProperty;
 
 public class ConfigurationViewModel implements ViewModel
@@ -35,5 +39,25 @@ public class ConfigurationViewModel implements ViewModel
         public SimpleStringProperty gpioPathValue = new SimpleStringProperty("");
         public SimpleStringProperty gpioPathIsInitialized = new SimpleStringProperty("");
         public SimpleStringProperty gpioPathGeneralPath = new SimpleStringProperty("");
+    }
+
+    public void saveConfiguration()
+    {
+        Paths paths = new Paths();
+        paths.setDirection(this.config.gpioPathDirection.getValue());
+        paths.setExport(this.config.gpioPathExport.getValue());
+        paths.setUnexport(this.config.gpioPathUnexport.getValue());
+        paths.setValue(this.config.gpioPathValue.getValue());
+        paths.setIsInitialized(this.config.gpioPathIsInitialized.getValue());
+        paths.setGeneralPath(this.config.gpioPathGeneralPath.getValue());
+
+        GPIO gpio = new GPIO();
+        gpio.setPlaceholder(this.config.gpioPlaceholder.getValue());
+        gpio.setPaths(paths);
+
+        Configuration configuration = new Configuration();
+        configuration.setGpio(gpio);
+
+        CommandCenter.getSaveConfigurationCommand(configuration, true).execute();
     }
 }

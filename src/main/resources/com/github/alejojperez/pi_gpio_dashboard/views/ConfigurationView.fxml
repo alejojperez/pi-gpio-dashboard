@@ -248,7 +248,7 @@
                         <String fx:value="btn-sm"/>
                     </styleClass>
                 </Button>
-                <Button mnemonicParsing="false" text="Save" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                <Button mnemonicParsing="false" onAction="#save" text="Save" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
                     <styleClass>
                         <String fx:value="btn"/>
                         <String fx:value="btn-primary"/>
