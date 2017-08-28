@@ -305,6 +305,12 @@ public class DashboardView implements FxmlView<DashboardViewModel>, Initializabl
     }
 
     @FXML
+    private void closeWindow(ActionEvent actionEvent)
+    {
+        ((Stage) ( (Button)actionEvent.getSource() ).getScene().getWindow() ).close();
+    }
+
+    @FXML
     private void showDefaultPinsWindow()
     {
         Stage window = new Stage();

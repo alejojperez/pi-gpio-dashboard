@@ -27,7 +27,7 @@
                         <MenuItem mnemonicParsing="false" onAction="#showDefaultPinsWindow" text="Default pins..."/>
                         <MenuItem mnemonicParsing="false" onAction="#showConfigurationWindow" text="Configuration..."/>
                         <SeparatorMenuItem mnemonicParsing="false"/>
-                        <MenuItem mnemonicParsing="false" text="Close"/>
+                        <MenuItem mnemonicParsing="false" text="Close" onAction="#closeWindow" />
                     </items>
                 </Menu>
             </menus>
