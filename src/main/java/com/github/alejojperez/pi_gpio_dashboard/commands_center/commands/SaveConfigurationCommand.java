@@ -1,6 +1,7 @@
 package com.github.alejojperez.pi_gpio_dashboard.commands_center.commands;
 
 import com.alejojperez.pi_gpio.core.config.Configuration;
+import com.alejojperez.pi_gpio.core.implementations.GPIOController;
 import com.github.alejojperez.pi_gpio_dashboard.Application;
 import com.github.alejojperez.pi_gpio_dashboard.message_center.Manager;
 import de.saxsys.mvvmfx.utils.commands.Action;
@@ -50,6 +51,15 @@ public class SaveConfigurationCommand extends AbstractCommand
                     jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
                     jaxbMarshaller.marshal(configuration, file);
+
+                    // Once the configuration is saved, we have to reload the GPIO watcher
+                    // if it was loaded
+                    if(GPIOController.getInstance().isFolderWatcherRunning())
+                    {
+                        GPIOController.getInstance().stopFolderWatcher();
+                        GPIOController.getInstance().loadGeneralPath();
+                        GPIOController.getInstance().startFolderWatcher();
+                    }
                 } catch (JAXBException e) {
                     Manager.buildMessage("Configuration", "Error Saving Configuration", "We could not save the configuration details to the file.", Alert.AlertType.ERROR, null, "");
                 }
