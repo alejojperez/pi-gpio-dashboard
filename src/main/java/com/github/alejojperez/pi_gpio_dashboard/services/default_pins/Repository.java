@@ -69,24 +69,24 @@ public class Repository
      */
     public static boolean saveCurrentModelList()
     {
-//        if(Repository.modelsList == null)
-//        {
-//            Manager.error("Default Pins File", "we could not save the current pins file.");
-//            return false;
-//        }
-//
-//        try {
-//            File file = new File(Repository.defaultPinsFileLocation);
-//            JAXBContext jaxbContext = JAXBContext.newInstance(ModelsList.class);
-//            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-//
-//            // output pretty printed
-//            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-//
-//            jaxbMarshaller.marshal(modelsList, file);
-//        } catch (JAXBException e) {
-//            return false;
-//        }
+        if(Repository.modelsList == null)
+        {
+            Manager.error("Default Pins File", "we could not save the current pins file.");
+            return false;
+        }
+
+        try {
+            File file = new File(Application.class.getResource("default-pins.xml").getPath());
+            JAXBContext jaxbContext = JAXBContext.newInstance(ModelsList.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+            // output pretty printed
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+            jaxbMarshaller.marshal(modelsList, file);
+        } catch (JAXBException e) {
+            return false;
+        }
 
         return true;
     }
