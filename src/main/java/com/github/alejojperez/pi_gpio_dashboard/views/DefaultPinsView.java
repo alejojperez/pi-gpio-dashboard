@@ -7,6 +7,8 @@ import com.github.alejojperez.pi_gpio_dashboard.services.default_pins.entities.M
 import com.github.alejojperez.pi_gpio_dashboard.services.default_pins.entities.Pin;
 import com.github.alejojperez.pi_gpio_dashboard.services.default_pins.entities.PinsList;
 import com.github.alejojperez.pi_gpio_dashboard.view_models.DefaultPinsViewModel;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;
 import javafx.collections.FXCollections;
@@ -38,6 +40,8 @@ public class DefaultPinsView implements FxmlView<DefaultPinsViewModel>, Initiali
     public TableColumn<Pin, String> tcPinNumber;
     @FXML
     public TableColumn<Pin, String> tcGpio;
+    @FXML
+    private TableColumn<Pin, String> tcActions;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -166,6 +170,59 @@ public class DefaultPinsView implements FxmlView<DefaultPinsViewModel>, Initiali
                                 textField.textProperty().addListener((observable, oldValue, newValue) -> record.setGpio( Integer.parseInt(newValue)));
 
                                 return textField;
+                            }
+                        };
+                    }
+                }
+        );
+
+        /**
+         * Table Column GPIO
+         */
+        this.tcActions.setCellFactory(
+                new Callback<TableColumn<Pin, String>, TableCell<Pin, String>>()
+                {
+                    @Override
+                    public TableCell call( final TableColumn<Pin, String> param )
+                    {
+                        return new TableCell<Pin, String>()
+                        {
+                            @Override
+                            public void updateItem( String item, boolean empty )
+                            {
+                                super.updateItem( item, empty );
+                                this.setText( null );
+
+                                if ( empty ) {
+                                    this.setGraphic( null );
+                                } else {
+                                    this.setGraphic( this.generateContent() );
+                                }
+                            }
+
+                            private Button generateContent()
+                            {
+                                FontAwesomeIconView icon = new FontAwesomeIconView(FontAwesomeIcon.TIMES);
+                                icon.setGlyphStyle("-fx-fill: #fff");
+
+                                Button btn = new Button();
+                                btn.setGraphic(icon);
+                                btn.getStyleClass().addAll("btn", "btn-danger", "btn-xs");
+
+                                btn.setOnAction(event -> {
+                                    Model model = viewModel.getModel(cbModels.getValue().toString());
+
+                                    if(model == null)
+                                    {
+                                        Manager.error("Default Pins", "The pin can not be deleted because the model ["+cbModels.getValue().toString()+"] is not valid.");
+                                        return;
+                                    }
+
+                                    model.getPinsList().getPins().remove(this.getIndex());
+                                    tvDefaultPins.getItems().remove(this.getIndex());
+                                });
+
+                                return btn;
                             }
                         };
                     }
