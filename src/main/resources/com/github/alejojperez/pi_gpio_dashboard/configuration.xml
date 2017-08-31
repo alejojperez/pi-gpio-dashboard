@@ -3,12 +3,12 @@
     <GPIO>
         <placeholder>${PIN_NUMBER}$</placeholder>
         <paths>
-            <direction>./Testing Files/gpio${PIN_NUMBER}$/direction</direction>
-            <export>./Testing Files/export</export>
-            <unexport>./Testing Files/unexport</unexport>
-            <value>./Testing Files/gpio${PIN_NUMBER}$/value</value>
-            <isInitialized>./Testing Files/gpio${PIN_NUMBER}$</isInitialized>
-            <generalPath>./Testing Files</generalPath>
+            <direction>/sys/class/gpio/gpio${PIN_NUMBER}$/direction</direction>
+            <export>/sys/class/gpio/export</export>
+            <unexport>/sys/class/gpio/unexport</unexport>
+            <value>/sys/class/gpio/gpio${PIN_NUMBER}$/value</value>
+            <isInitialized>/sys/class/gpio/gpio${PIN_NUMBER}$</isInitialized>
+            <generalPath>/sys/class/gpio</generalPath>
         </paths>
     </GPIO>
 </configuration>
